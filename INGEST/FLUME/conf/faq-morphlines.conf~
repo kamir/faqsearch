@@ -1,0 +1,49 @@
+SOLR_LOCATOR : {
+    # Name of solr collection
+    collection : faq_collection1
+    # ZooKeeper ensemble
+    zkHost : "dev.loudacre.com:2181/solr"
+}
+
+morphlines : [
+{
+    id : morphline1
+    importCommands : ["com.cloudera.**", "org.apache.solr.**"]
+    commands : [
+    # Reads the incoming data as JSON
+    {
+        readJson {}
+    },
+    # Extracts the relevant pieces of the JSON and assigns them 
+    # a variable name
+    {
+        extractJsonPaths {
+            flatten: false
+            paths : {
+                contextdescription: "/contextdescription"
+                author: "/author"
+                question: "/question"
+                context: "/context"
+            }
+        }
+    },
+    {
+	addCurrentTime {}
+    },
+    {
+	generateUUID { field : id }
+    }, 
+    {
+        sanitizeUnknownSolrFields {
+            # Location from which to fetch Solr schema
+            solrLocator : ${SOLR_LOCATOR}
+        }
+    },
+    {
+        loadSolr {
+            solrLocator : ${SOLR_LOCATOR}
+        }
+    }
+    ]
+}
+]
