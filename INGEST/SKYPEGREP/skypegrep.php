@@ -47,6 +47,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 date_default_timezone_set('UTC');
 
+$here = $_SERVER['PHP_SELF'];
+
 // Load the auth info
 require_once('.htinfo');
 
@@ -77,7 +79,7 @@ if (mysqli_num_rows(mysqli_query($db, "SHOW TABLES LIKE 'Linked'")) == 0){
 }
 
 if ($do_tables > 0){
-    echo "<p class='back'><a href='skypegrep.php'>Return to search</a></p>";
+    echo "<p class='back'><a href='$here'>Return to search</a></p>";
     exit;
 }
 
@@ -113,7 +115,7 @@ if (!empty($_GET['search']) AND empty($_GET['ts'])){
                 if (strlen($text) < 200) $text = str_pad($text, 200);
                 $name = str_replace(' ', '&nbsp;', $name);
                 $line = "<span class='light'>".date('m/d/y',$row['timestamp'])." $name</span><br>".strip_tags($text);
-                $lnk = $_SERVER['PHP_SELF']."?ts=".$row['timestamp']."&search=$s";
+                $lnk = "$here?ts=".$row['timestamp']."&search=$s";
                 echo "<td><div class='wrap'><a href='$lnk'>$line</a></div></td>\n";
                 if ($c % 6 == 0) echo "</tr><tr>\n";
             }
@@ -134,16 +136,16 @@ else if (!empty($_GET['ts'])){
             $text = html_entity_decode($row['text']);
             $id = $row['id'];
             $text = preg_replace("/($s)/", "<span class='hl'>$1</span>", $text);
-            $ctx_q = "<a href='skypegrep.php?search=$s&ts=$ts&limit=$limit&id=$id&type=q'><strong>Q</strong>&nbsp;<img src='thumb.png'></a>";
-            $ctx_a = "<a href='skypegrep.php?search=$s&ts=$ts&limit=$limit&id=$id&type=a'><strong>A</strong>&nbsp;<img src='thumb.png'></a>";
+            $ctx_q = "<a href='$here?search=$s&ts=$ts&limit=$limit&id=$id&type=q'><strong>Q</strong>&nbsp;<img src='thumb.png'></a>";
+            $ctx_a = "<a href='$here?search=$s&ts=$ts&limit=$limit&id=$id&type=a'><strong>A</strong>&nbsp;<img src='thumb.png'></a>";
             $line = '['.date('m/d/y h:i',$row['timestamp'])."] <font color='green'><b>[".$row['name']."]</b></font> $text";
             echo "<tr><td width='100'><span class='mark'>$ctx_q</span>&nbsp;<span class='mark'>$ctx_a</span></td><td><span class='skype'>$line</span></td></tr>";
         }
     }
     echo '</table>';
     $limit += 20;
-    echo "<p class='back'><a href='skypegrep.php?ts=$ts&search=$s&limit=$limit'>Extend by 20 posts</a></p>";
-    echo "<p class='back'><a href='skypegrep.php'>Return to search</a></p>";
+    echo "<p class='back'><a href='$here?ts=$ts&search=$s&limit=$limit'>Extend by 20 posts</a></p>";
+    echo "<p class='back'><a href='$here'>Return to search</a></p>";
 }
 
 ?>
