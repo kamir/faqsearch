@@ -5,7 +5,7 @@
 grep -q -- '^--full$\|^--incremental$' <<< "$1" || { printf "Usage: ${0##*/} <--full|--incremental>\n"; exit; }
 
 # Auto-generated timestamp of the last retrieved IRT record; DO NOT MODIFY BY HAND!
-LAST_TS=1406246302
+LAST_TS=
 
 if [ "$1" == '--incremental' ]
 then
