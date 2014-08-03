@@ -57,25 +57,25 @@ require_once('.htinfo');
 //    exit;
 //}
 
-$db = mysqli_connect($db['host'], $db['user'], $db['password'], 'db') or die("Error ".mysqli_error($db));
-mysqli_query($db, "SET NAMES 'utf8'");
-mysqli_query($db, "SET CHARACTER SET utf8");
+$dbc = mysqli_connect($db['host'], $db['user'], $db['password'], 'db') or die("Error ".mysqli_error($dbc));
+mysqli_query($dbc, "SET NAMES 'utf8'");
+mysqli_query($dbc, "SET CHARACTER SET utf8");
 
 if (empty($_GET['limit'])){ $limit = 30; } else { $limit = $_GET['limit']; }
 
 $do_tables = 0;
 # Check for/create tables as necessary
-if (mysqli_num_rows(mysqli_query($db, "SHOW TABLES LIKE 'Messages'")) == 0){
+if (mysqli_num_rows(mysqli_query($dbc, "SHOW TABLES LIKE 'Messages'")) == 0){
     $do_tables++;
     echo "'Messages' table not found; creating... ";
-    $res = mysqli_query($db, "CREATE TABLE Messages(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),tag VARCHAR(64),name VARCHAR(64),timestamp INT(11),text VARCHAR(2048))");
-    if (!$res){ printf("Error creating 'Messages': <b>%s</b><br>", mysqli_error($db)); } else { echo "Success.<br>"; }
+    $res = mysqli_query($dbc, "CREATE TABLE Messages(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),tag VARCHAR(64),name VARCHAR(64),timestamp INT(11),text VARCHAR(2048))");
+    if (!$res){ printf("Error creating 'Messages': <b>%s</b><br>", mysqli_error($dbc)); } else { echo "Success.<br>"; }
 }
-if (mysqli_num_rows(mysqli_query($db, "SHOW TABLES LIKE 'Linked'")) == 0){
+if (mysqli_num_rows(mysqli_query($dbc, "SHOW TABLES LIKE 'Linked'")) == 0){
     $do_tables++;
     echo "'Linked' table not found; creating...<br>";
-    $res = mysqli_query($db, "CREATE TABLE Linked(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),query VARCHAR(256),type CHAR(1),answer INT)");
-    if (!$res){ printf("Error creating 'Linked': <b>%s</b><br>", mysqli_error($db)); } else { echo "Success.<br>"; }
+    $res = mysqli_query($dbc, "CREATE TABLE Linked(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),query VARCHAR(256),type CHAR(1),answer INT)");
+    if (!$res){ printf("Error creating 'Linked': <b>%s</b><br>", mysqli_error($dbc)); } else { echo "Success.<br>"; }
 }
 
 if ($do_tables > 0){
@@ -84,17 +84,17 @@ if ($do_tables > 0){
 }
 
 if (!empty($_GET['id'])){
-    $srch = mysqli_real_escape_string($db, $_GET['search']);
-    $id = mysqli_real_escape_string($db, $_GET['id']);
+    $srch = mysqli_real_escape_string($dbc, $_GET['search']);
+    $id = mysqli_real_escape_string($dbc, $_GET['id']);
     $type = $_GET['type'];
     $q = "INSERT INTO Linked VALUES(NULL, '$srch', '$type', $id)";
-    if (!mysqli_query($db, $q)) printf("Error: %s\n", mysqli_error($db));
+    if (!mysqli_query($dbc, $q)) printf("Error: %s\n", mysqli_error($dbc));
 }
 
 if (!empty($_GET['search']) AND empty($_GET['ts'])){
-    $s = mysqli_escape_string($db, $_GET['search']);
+    $s = mysqli_escape_string($dbc, $_GET['search']);
     $query = "SELECT * FROM Messages WHERE text LIKE '%$s%'";
-    $result = mysqli_query($db, $query) or die("Error".mysqli_error($db));
+    $result = mysqli_query($dbc, $query) or die("Error".mysqli_error($dbc));
 
     $count = mysqli_num_rows($result);
     if($count == 0){
@@ -128,7 +128,7 @@ else if (!empty($_GET['ts'])){
     $ts = $_GET['ts'];
     $s = htmlspecialchars($_GET['search']);
     $query = "SELECT * FROM Messages where timestamp >= $ts LIMIT $limit";
-    $result = mysqli_query($db, $query) or die("Error".mysqli_error($db));
+    $result = mysqli_query($dbc, $query) or die("Error".mysqli_error($dbc));
 
     echo '<table border=0>';
     while($row = mysqli_fetch_array($result)) {
