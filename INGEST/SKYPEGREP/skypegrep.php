@@ -32,7 +32,7 @@ a:hover { text-decoration: none; color: gray; }
 <div id="content">
 
 <form method='get'>
-Enter your search text: <input type='text' id='mySearch' name='search'<?php if (!empty($_GET['search'])) echo "value='".$_GET['search']."'"; ?> autofocus>
+Enter your search text: <input type='text' id='mySearch' name='search'<?php if (!empty($_GET['search'])) echo " value='".$_GET['search']."'"; ?> autofocus>
 <input type='submit' name='submit' value='Search'>
 </form>
 <script>
