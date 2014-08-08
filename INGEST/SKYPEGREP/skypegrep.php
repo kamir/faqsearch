@@ -27,19 +27,16 @@ a:hover { text-decoration: none; color: gray; }
 .light { color: gray; font-weight: bold; line-height: 1.5em; }
 .alert { color: red; font-weight: bold; }
 .hl { font-weight: bold; color: red; background-color: #eee; }
+.qa { width: 100px; }
+.post { max-width: 80%; }
+pre { font-family: Verdana; }
 </style>
 
 <div id="content">
-
 <form method='get'>
-Enter your search text: <input type='text' id='mySearch' name='search'<?php if (!empty($_GET['search'])) echo " value='".$_GET['search']."'"; ?> autofocus>
+Enter your search text: <input type='text' id='mySearch' name='search'<?php if (!empty($_GET['search'])){ echo " value='".$_GET['search']."'"; } else { echo ' autofocus'; } ?>>
 <input type='submit' name='submit' value='Search'>
 </form>
-<script>
-  if (!("autofocus" in document.createElement("input"))) {
-    document.getElementById("mySearch").focus();
-  }
-</script>
 <hr>
 
 <?php
@@ -130,13 +127,13 @@ else if (!empty($_GET['ts'])){
     echo '<table border=0>';
     while($row = mysqli_fetch_array($result)) {
         if (!empty($row['text'])){
-            $text = html_entity_decode($row['text']);
+            $text = html_entity_decode(nl2br($row['text']));
             $id = $row['id'];
             $text = preg_replace("/($s)/", "<span class='hl'>$1</span>", $text);
             $ctx_q = "<a href='$here?search=$s&ts=$ts&limit=$limit&id=$id&type=q'><strong>Q</strong>&nbsp;<img src='thumb.png'></a>";
             $ctx_a = "<a href='$here?search=$s&ts=$ts&limit=$limit&id=$id&type=a'><strong>A</strong>&nbsp;<img src='thumb.png'></a>";
             $line = '['.date('m/d/y h:i',$row['timestamp'])."] <font color='green'><b>[".$row['name']."]</b></font> $text";
-            echo "<tr><td width='100'><span class='mark'>$ctx_q</span>&nbsp;<span class='mark'>$ctx_a</span></td><td><span class='skype'>$line</span></td></tr>";
+            echo "<tr><td class='qa'><span class='mark'>$ctx_q</span>&nbsp;<span class='mark'>$ctx_a</span></td><td class='post'><span class='skype'>$line</span></td></tr>";
         }
     }
     echo '</table>';
