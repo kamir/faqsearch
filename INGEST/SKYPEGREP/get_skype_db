@@ -5,10 +5,11 @@
 grep -q -- '^--full$\|^--incremental$' <<< "$1" || { printf "Usage: ${0##*/} <--full|--incremental>\n"; exit; }
 
 # Auto-generated timestamp of the last retrieved IRT record; DO NOT MODIFY BY HAND!
-LAST_TS=
+LAST_TS=1407184183
 
 if [ "$1" == '--incremental' ]
 then
+    [ -z "$LAST_TS" ] && LAST_TS=0
     INCR="AND timestamp > $LAST_TS"
 else
     # Create header for table
@@ -22,7 +23,7 @@ db=$(find ~/.Skype -name main.db)
 chat=$(sqlite3 $db "SELECT identity FROM Conversations WHERE displayname='Instructor Red Telephone'")
 
 # Generate the insert statements AND update the LAST_TS timestamp
-sqlite3 $db <<! | tee >(tail -n 1|awk -F, '{print $4}'|while read str; do sed -i 's/^\(LAST_TS=\).*/\1'"$str"'/' $0; done)
+sqlite3 $db <<! |tee >(tail -n 1|awk -F, '{print $4}'|xargs -I@ sed -i 's/^\(LAST_TS=\).*/\1@/' $0)
 .mode insert Messages
 SELECT NULL, author, from_dispname, timestamp, body_xml FROM Messages WHERE chatname LIKE '$chat%' AND body_xml IS NOT NULL $INCR;
 !
