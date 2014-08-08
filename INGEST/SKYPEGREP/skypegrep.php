@@ -47,15 +47,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 date_default_timezone_set('UTC');
 
+# Load the auth info
+if (! @include_once('.htinfo')){
+    die("<span class='alert'>No DB authorization information found; please contact your system administrator for the appropriate access permissions.</span>");
+}
+
 $here = $_SERVER['PHP_SELF'];
-
-// Load the auth info
-require_once('.htinfo');
-
-//if (empty($db['hostname'])){
-//    echo "<pre class='alert'>No '.htinfo' auth file found; quitting.</pre>";
-//    exit;
-//}
 
 $dbc = mysqli_connect($db['host'], $db['user'], $db['password'], 'db') or die("Error ".mysqli_error($dbc));
 mysqli_query($dbc, "SET NAMES 'utf8'");
