@@ -5,7 +5,7 @@
 grep -q -- '^--full$\|^--incremental$' <<< "$1" || { printf "Usage: ${0##*/} <--full|--incremental>\n"; exit; }
 
 # Auto-generated timestamp of the last retrieved IRT record; DO NOT MODIFY BY HAND!
-LAST_TS=1407184183
+LAST_TS=1407416679
 
 create="DROP TABLE Messages;
 CREATE TABLE Messages(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),\

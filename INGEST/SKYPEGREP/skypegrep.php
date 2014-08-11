@@ -86,7 +86,8 @@ if (!empty($_GET['id'])){
 }
 
 if (!empty($_GET['search']) AND empty($_GET['ts'])){
-    $s = mysqli_escape_string($dbc, $_GET['search']);
+    if (strlen($_GET['search']) < 3) die("<span class='alert'>Query must be at least 3 letters long.</span>");
+    $s = mysqli_escape_string($dbc, htmlspecialchars($_GET['search']));
     $query = "SELECT * FROM Messages WHERE text LIKE '%$s%'";
     $result = mysqli_query($dbc, $query) or die("Error".mysqli_error($dbc));
 
