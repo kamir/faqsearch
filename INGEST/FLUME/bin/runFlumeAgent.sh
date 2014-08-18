@@ -3,7 +3,7 @@
 # Create an index to strore FAQ data in Cloudera-Search
 # 
 
-export FLUME_SPOOL_DIR=/flume/faq_files_spooldir
+export FLUME_SPOOL_DIR=/home/mirko.kaempf/FAQDATA/flume/faq_files_spooldir
 export COLLECTION=faq_collection1
 
 clear
