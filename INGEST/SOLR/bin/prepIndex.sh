@@ -9,7 +9,7 @@ clear
 echo Create the index now ... 
 
 export COLLECTION=faq_collection1
-export FLUME_SPOOL_DIR=/flume/faq_files_spooldir
+export FLUME_SPOOL_DIR=/home/mirko.kaempf/FAQDATA/flume/faq_files_spooldir/faq_collection1
 
 if [ -n $1 ] 
 then	
@@ -21,8 +21,8 @@ fi
 
 echo Spool-Directory: $FLUME_SPOOL_DIR
 
-mkdir $FLUME_SPOOL_DIR
-mkdir $FLUME_SPOOL_DIR/$COLLECTION
+#mkdir $FLUME_SPOOL_DIR
+#mkdir $FLUME_SPOOL_DIR/$COLLECTION
 
 #solrctl --zk dev.loudacre.com:2181/solr instancedir --create $COLLECTION ./../conf
 #solrctl --zk dev.loudacre.com:2181/solr collection --create $COLLECTION
