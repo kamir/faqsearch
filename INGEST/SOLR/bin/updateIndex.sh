@@ -23,7 +23,7 @@ echo Spool-Directory: $FLUME_SPOOL_DIR
 mkdir $FLUME_SPOOL_DIR
 mkdir $FLUME_SPOOL_DIR/$COLLECTION
 
-solrctl --zk dev.loudacre.com:2181/solr instancedir --update $COLLECTION ./../conf
+solrctl --zk training03.mtv.cloudera.com:2181/solr instancedir --update $COLLECTION ./../conf
 
 echo Done.
 
