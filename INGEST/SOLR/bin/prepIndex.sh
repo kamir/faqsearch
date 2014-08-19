@@ -27,6 +27,9 @@ echo Spool-Directory: $FLUME_SPOOL_DIR
 #solrctl --zk dev.loudacre.com:2181/solr instancedir --create $COLLECTION ./../conf
 #solrctl --zk dev.loudacre.com:2181/solr collection --create $COLLECTION
 
+solrctl --zk training01.sjc.cloudera.com:2181/solr instancedir --delete $COLLECTION
+solrctl --zk training01.sjc.cloudera.com:2181/solr collection --delete $COLLECTION
+
 solrctl --zk training01.sjc.cloudera.com:2181/solr instancedir --create $COLLECTION ./../conf
 solrctl --zk training01.sjc.cloudera.com:2181/solr collection --create $COLLECTION
 
