@@ -63,5 +63,13 @@ if __name__ == "__main__":
     for row in csv.reader(csv_file):
         print ", ".join(row)
 
+#
+# We assume to pipe the output into a file: export.csv
+# Document IDs are managed within Google-Docs
 
+
+#
+# We have to convert the CSV file  and to upload it via CURL
+#
+# curl http://training02.sjc.cloudera.com:8983/solr/faq_collection1/update/csv --data-binary @export.csv -H 'Content-type:text/plain; charset=utf-8'
 
