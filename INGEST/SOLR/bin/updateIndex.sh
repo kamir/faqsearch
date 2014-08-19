@@ -24,8 +24,11 @@ echo Spool-Directory: $FLUME_SPOOL_DIR
 #mkdir $FLUME_SPOOL_DIR/$COLLECTION
 
 solrctl --zk training01.sjc.cloudera.com:2181/solr instancedir --update $COLLECTION ./../conf
+echo Instance dir was updated.
 
-echo Done.
+solrctl --zk training01.sjc.cloudera.com:2181/solr collection --reload $COLLECTION
+echo Collection reloaded.
+
 
 
 
