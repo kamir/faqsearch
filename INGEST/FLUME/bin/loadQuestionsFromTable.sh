@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     email = "mirko.kaempf@cloudera.com" # (your email here)
     password = getpass.getpass()
-    spreadsheet_id = "FAQ - Cloudera Admin Training (CDH4 and C5 version) (Responses)" # (spreadsheet id here)
+    spreadsheet_id = "0AnwImjy2siFOdFRSQmwxS2ctZEhZaGZQR21ZdmVpM2c" # (spreadsheet id here)
 
     # Create client and spreadsheet objects
     gs = Client(email, password)
