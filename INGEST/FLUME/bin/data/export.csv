@@ -1,0 +1,6 @@
+id,timeasked,author,question,tag,context,answer
+1,2014-08-13T14:00:04Z, mirko.kaempf@cloudera.com, What time is it?, time now, Dev London, Use your local time service or a watch!
+2,2014-08-14T14:00:04Z, mirko.kaempf@cloudera.com, What is my favorite color?, stupid, none, Green
+3,2014-08-15T14:00:04Z, mirko.kaempf@cloudera.com, What is the best approach for teaching the Admin class?, CM admin, none, Should we switch to CM as a default?
+4,2014-08-16T14:00:04Z, mirko.kaempf@cloudera.com, How can I update the index after I changed the schema?, SOLR schema change, BDA, Answer from stackoverflow.com:  <br/>You have to reindex. There is no other way around it. Indexing is a destructive process with relation to its input: text is sliced and diced to make it faster for search so you can't recover the original text unless you had it in a stored field. (stored=true in your Solr field definition in schema.xml). If you did have it in a stored field all you have to do is a little process to iterate through the documents and just re-send them so they're reindexed. <br/> http://stackoverflow.com/questions/6038920/updating-solr-schema
+5,2014-08-19T14:00:04Z, mirko.kaempf@cloudera.com, Q, tag, NONE @home, A
