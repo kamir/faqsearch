@@ -13,7 +13,7 @@
 	  	<field name="isQ" type="boolean" indexed="true" stored="true" required="false" default="false" multiValued="false" />
 	  	<field name="isRAW" type="boolean" indexed="true" stored="true" required="false" default="true" multiValued="false" />
 		<field name="_version_" type="long" indexed="true" stored="true"/>
-	  
+	  <field name="type" type="string" indexed="true" stored="true" required="true" default="raw" multiValued="false" />
   </fields>
 
   <uniqueKey>id</uniqueKey>
