@@ -9,7 +9,8 @@ clear
 
 echo Import questions now ... 
  
-lynx https://docs.google.com/a/cloudera.com/spreadsheet/pub?key=0AnwImjy2siFOdFRSQmwxS2ctZEhZaGZQR21ZdmVpM2c&single=true&gid=0&output=csv
+curl https://docs.google.com/a/cloudera.com/spreadsheet/ccc?key=0AnwImjy2siFOdFRSQmwxS2ctZEhZaGZQR21ZdmVpM2c&usp=sharing&output=csv
+
 echo Done.
 
 
