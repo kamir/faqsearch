@@ -2,10 +2,10 @@
 <schema name="example" version="1.5">
   <fields>
 	  <field name="id" type="string" indexed="true" stored="true" multiValued="false" />
-	  <field name="author" type="string" indexed="true" stored="true" multiValued="false" />
+	  <field name="author" type="email_general" indexed="true" stored="true" multiValued="false" />
 	  <field name="question" type="text_general" indexed="true" stored="true" required="true" multiValued="false" /> 
 	  <field name="answer" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
-	  <field name="context" type="string" indexed="true" stored="true" required="true" multiValued="true" />
+	  <field name="context" type="text_general" indexed="true" stored="true" required="true" multiValued="true" />
 	  <field name="timeasked" type="date" indexed="true" stored="true" required="true" default="NOW" multiValued="false" />
 	  	<field name="timeanswered" type="date" indexed="true" stored="true" required="false" multiValued="true" />
 	  	<field name="contextdescription" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
@@ -22,6 +22,32 @@
   <uniqueKey>id</uniqueKey>
 
   <types>
+  
+  
+  <fieldType name="names_general" class="solr.TextField" >
+    <analyzer type="index">
+      <charFilter class="solr.HTMLStripCharFilterFactory" />
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <charFilter class="solr.HTMLStripCharFilterFactory" />
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="email_general" class="solr.TextField" >
+    <analyzer type="index">
+      <tokenizer class="solr.UAX29URLEmailTokenizerFactory" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.UAX29URLEmailTokenizerFactory" />
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  
+  
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"
        attribute and any other attributes determine the real
