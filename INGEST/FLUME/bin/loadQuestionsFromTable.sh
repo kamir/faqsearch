@@ -65,11 +65,18 @@ if __name__ == "__main__":
 
 #
 # We assume to pipe the output into a file: export.csv
+#
 # Document IDs are managed within Google-Docs
+# 
+# Date conversion is managed in the google table
+#
 
 
 #
-# We have to convert the CSV file  and to upload it via CURL
+# We have to import the TSV file into SOLR via CURL
 #
-# curl http://training02.sjc.cloudera.com:8983/solr/faq_collection1/update/csv --data-binary @export.csv -H 'Content-type:text/plain; charset=utf-8'
+cmd = "curl http://training02.sjc.cloudera.com:8983/solr/faq_collection1/update/csv?separator=%09 --data-binary @export.csv -H 'Content-type:text/plain; charset=utf-8'"
+return_code = subprocess.call( cmd , shell=True )  
+echo return_code
+
 
