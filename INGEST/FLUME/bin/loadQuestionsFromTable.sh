@@ -80,11 +80,12 @@ if __name__ == "__main__":
 cmd = "curl http://training02.sjc.cloudera.com:8983/solr/faq_collection1/update/csv?separator=%09 --data-binary @export.csv -H 'Content-type:text/plain; charset=utf-8'"
 
 
-p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-for line in p.stdout.readlines():
-    print line,
-retval = p.wait()
+#p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+#for line in p.stdout.readlines():
+#    print line,
+#retval = p.wait()
 
+print "Run this command now:"
 print cmd
 
 
