@@ -85,6 +85,7 @@ for line in p.stdout.readlines():
     print line,
 retval = p.wait()
 
+echo cmd
 
 
 
