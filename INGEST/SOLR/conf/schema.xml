@@ -22,20 +22,7 @@
   <uniqueKey>id</uniqueKey>
 
   <types>
-  
-  
-  <fieldType name="names_general" class="solr.TextField" >
-    <analyzer type="index">
-      <charFilter class="solr.HTMLStripCharFilterFactory" />
-      <tokenizer class="solr.StandardTokenizerFactory"/>
-      <filter class="solr.LowerCaseFilterFactory"/>
-    </analyzer>
-    <analyzer type="query">
-      <charFilter class="solr.HTMLStripCharFilterFactory" />
-      <tokenizer class="solr.StandardTokenizerFactory"/>
-      <filter class="solr.LowerCaseFilterFactory"/>
-    </analyzer>
-  </fieldType>
+ 
   <fieldType name="email_general" class="solr.TextField" >
     <analyzer type="index">
       <tokenizer class="solr.UAX29URLEmailTokenizerFactory" />
