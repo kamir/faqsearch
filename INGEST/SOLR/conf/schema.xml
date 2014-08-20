@@ -23,16 +23,7 @@
 
   <types>
  
-  <fieldType name="email_general" class="solr.TextField" >
-    <analyzer type="index">
-      <tokenizer class="solr.UAX29URLEmailTokenizerFactory" />
-      <filter class="solr.LowerCaseFilterFactory"/>
-    </analyzer>
-    <analyzer type="query">
-      <tokenizer class="solr.UAX29URLEmailTokenizerFactory" />
-      <filter class="solr.LowerCaseFilterFactory"/>
-    </analyzer>
-  </fieldType>
+ 
   
   
     <!-- field type definitions. The "name" attribute is
