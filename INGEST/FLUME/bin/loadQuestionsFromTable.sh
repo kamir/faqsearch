@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
     # Parse as CSV and print the rows
     for row in csv.reader(csv_file):
-        print ", ".join(row)
+        print "\t".join(row)
 
 #
 # We assume to pipe the output into a file: export.csv
