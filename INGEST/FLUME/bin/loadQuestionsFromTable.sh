@@ -85,8 +85,8 @@ cmd = "curl http://training02.sjc.cloudera.com:8983/solr/faq_collection1/update/
 #    print line,
 #retval = p.wait()
 
-print "Run this command now:"
-print cmd
+#print "Run this command now:"
+#print cmd
 
 
 
