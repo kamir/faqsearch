@@ -2,10 +2,20 @@
 # Created by Ben Okopnik on Thu Jul 31 14:32:06 PDT 2014
 # Gets full or incremental dump of all IRT conversations from the Skype database
 
-grep -q -- '^--full$\|^--incremental$' <<< "$1" || { printf "Usage: ${0##*/} <--full|--incremental>\n"; exit; }
+grep -q -- '^--full$\|^--incremental$' <<< "$1" || {
+cat <<!
+Usage: ${0##*/} <--full|--incremental>
+
+    Example:
+
+    # Update the 'Messages' table in MYDB on HOST with the latest Skype messages
+    ${0##*/} --incremental|mysql -hHOST -uUSER -p MYDB
+!
+exit;
+}
 
 # Auto-generated timestamp of the last retrieved IRT record; DO NOT MODIFY BY HAND!
-LAST_TS=1407416679
+LAST_TS=1408741074
 
 create="DROP TABLE Messages;
 CREATE TABLE Messages(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),\
