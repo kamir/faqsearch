@@ -3,17 +3,21 @@
 # Create an index to strore FAQ data in Cloudera-Search
 # 
 
-export FLUME_SPOOL_DIR=/flume/faq_files_spooldir
+export FLUME_SPOOL_DIR=/home/mirko.kaempf/FAQDATA/flume/faq_files_spooldir
 export COLLECTION=faq_collection1
 
 clear
-echo Run the Flume agent now ... 
-echo 
+echo Run a Flume agent 
+echo =================
+echo
 echo Collection name: $COLLECTION
 echo Spool-Directory: $FLUME_SPOOL_DIR
 echo 
-read -p "Select agent > (agent1,agent2)   :" a
-read -p "Debug mode   > (Info,Warn,Trace) :" m
+echo Agent 1 : Observe a SPOOL-directory and import CSV files
+echo Agent 2 : Listen on an HTTP-Port 9090 and import new JSON records
+echo
+read -p "Select an agent (agent1, agent2)    > " a
+read -p "Debug mode (Info, Warn, Trace)      > " m
 
 
 cd ../conf

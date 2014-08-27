@@ -2,20 +2,30 @@
 <schema name="example" version="1.5">
   <fields>
 	  <field name="id" type="string" indexed="true" stored="true" multiValued="false" />
-	  <field name="author" type="string" indexed="true" stored="true" multiValued="false" />
+	  <field name="author" type="email_general" indexed="true" stored="true" multiValued="false" />
 	  <field name="question" type="text_general" indexed="true" stored="true" required="true" multiValued="false" /> 
-	  <field name="context" type="string" indexed="true" stored="true" required="true" multiValued="true" />
-	  	<field name="timeasked" type="date" indexed="true" stored="true" required="false" multiValued="true" />
-	  	<field name="contextdescription" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
-	  	
-	  	<field name="answer" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+	  <field name="answer" type="text_general" indexed="true" stored="true" required="false" multiValued="false" />
+	  <field name="context" type="text_general" indexed="true" stored="true" required="true" multiValued="true" />
+	  <field name="timeasked" type="date" indexed="true" stored="true" required="true" default="NOW" multiValued="false" />
 	  	<field name="timeanswered" type="date" indexed="true" stored="true" required="false" multiValued="true" />
-	  	<field name="_version_" type="long" indexed="true" stored="true"/>
+	  	<field name="contextdescription" type="text_general" indexed="true" stored="true" required="false" multiValued="true" />
+	  	<field name="isA" type="boolean" indexed="true" stored="true" required="false" default="false" multiValued="false" />
+	  	<field name="isQ" type="boolean" indexed="true" stored="true" required="false" default="false" multiValued="false" />
+	  	<field name="isRAW" type="boolean" indexed="true" stored="true" required="false" default="true" multiValued="false" />
+		<field name="_version_" type="long" indexed="true" stored="true"/>
+	  <field name="type" type="string" indexed="true" stored="true" required="true" default="raw" multiValued="false" />
+  	  <field name="tag" type="text_general" indexed="true" stored="true" required="false" multiValued="false" /> 
+	  
+  	
   </fields>
 
   <uniqueKey>id</uniqueKey>
 
   <types>
+ 
+ 
+  
+  
     <!-- field type definitions. The "name" attribute is
        just a label to be used by field definitions.  The "class"
        attribute and any other attributes determine the real
